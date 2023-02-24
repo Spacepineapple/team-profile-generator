@@ -29,7 +29,7 @@ async function init() {
     //Asynchronously assign the inquirer prompt responses to a variable
     let team = [];
     let team_building = true;
-    let manager_details = await inquirer
+    let managerData = await inquirer
     .prompt([
         {
             type: "input",
@@ -51,15 +51,23 @@ async function init() {
             name: "office",
             message: office,
         },
-    ]).then(val => {
-        team.push(val);
-    }).then(() =>
-        addToTeam()
-    )
-    .then(val => {            
-        console.log(val)
-    }
-    );
+    ]);
+    
+    team.push(managerData);    
+        
+    let val = await addToTeam()
+
+    while(val.teamBuild!=="Finish building team") {
+        if (val.teamBuild === "Add engineer") {
+            let engineer = await addEngineer();
+            team.push(engineer);
+        } else if (val.teamBuild === "Add intern") {
+            let intern = await addIntern();
+            team.push(intern);
+        }
+        val = await addToTeam();
+    }        
+    console.log(team);
 }
 
 async function addToTeam() {
@@ -77,5 +85,58 @@ async function addToTeam() {
         },
     ])
 }
+
+async function addEngineer() {
+    return await inquirer
+    .prompt([
+        {
+        type: "input",
+        name: "name",
+        message: name,
+    },
+    {
+        type: "input",
+        name: "employeeID",
+        message: employeeID,
+    },
+    {
+        type: "input",
+        name: "email",
+        message: email,
+    },
+    {
+        type: "input",
+        name: "github",
+        message: github,
+    },
+])
+}
+
+async function addIntern() {
+    return await inquirer
+    .prompt([
+        {
+        type: "input",
+        name: "name",
+        message: name,
+    },
+    {
+        type: "input",
+        name: "employeeID",
+        message: employeeID,
+    },
+    {
+        type: "input",
+        name: "email",
+        message: email,
+    },
+    {
+        type: "input",
+        name: "school",
+        message: school,
+    },
+])
+}
+
 
 init();
