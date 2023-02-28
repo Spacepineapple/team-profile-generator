@@ -1,19 +1,15 @@
-import Manager from "./lib/Manager.mjs";
-import Engineer from "./lib/Engineer.mjs";
-import Intern from "./lib/Intern.mjs";
-import fs, { write } from "fs";
-import inquirer from "inquirer";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const inquirer = require("inquirer");
+const path = require("path");
+const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-import renderTeam from "./src/page-template.mjs";
-import renderCSS from "./src/page-styling.mjs";
+const renderTeam = require("./src/page-template.js");
+const renderCSS = require("./src/page-styling.js")
 
 const questions = [
     "What is the employee's name?",
@@ -167,5 +163,4 @@ function createCSS() {
     })
 }
 
-//init();
-createCSS();
+init();

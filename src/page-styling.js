@@ -1,4 +1,4 @@
-export default () => {
+module.exports = () => {
     return `:root {
     --primary: #181D31;
     --secondary: #1363DF;
