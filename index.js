@@ -29,6 +29,7 @@ async function init() {
     //Asynchronously assign the inquirer prompt responses to a variable
     let team = [];
     let team_building = true;
+    console.log("Please add manager details");
     let manager = await inquirer
     .prompt([
         {

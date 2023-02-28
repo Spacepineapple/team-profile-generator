@@ -1,0 +1,30 @@
+:root {
+    --primary: #181D31;
+    --secondary: #1363DF;
+    --tertiary: #06283D;
+    --quarternary: #DFF6FF;
+    --text: #EEE;
+}
+
+.jumbotron {
+    background-color: var(--primary);
+    color: var(--text);
+}
+
+.card {
+    margin: 0.5rem;
+    width: 18rem;
+}
+
+.card .card-header {
+    background-color: var(--secondary);
+}
+
+.card-title {
+    color: var(--text);
+}
+
+body {
+    background-color: var(--quarternary);
+}
+    
