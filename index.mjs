@@ -1,7 +1,7 @@
-//import Manager from "./lib/Manager";
-//import Engineer from "./lib/Engineer";
-//import Intern from "./lib/Intern";
-//import fs from "fs";
+import Manager from "./lib/Manager.mjs";
+import Engineer from "./lib/Engineer.mjs";
+import Intern from "./lib/Intern.mjs";
+import fs from "fs";
 import inquirer from "inquirer";
 import path from "path";
 
@@ -29,7 +29,7 @@ async function init() {
     //Asynchronously assign the inquirer prompt responses to a variable
     let team = [];
     let team_building = true;
-    let managerData = await inquirer
+    let manager = await inquirer
     .prompt([
         {
             type: "input",
@@ -52,17 +52,19 @@ async function init() {
             message: office,
         },
     ]);
-    
-    team.push(managerData);    
+    manager = new Manager(manager.name, manager.employeeID, manager.email, manager.office);
+    team.push(manager);    
         
     let val = await addToTeam()
 
     while(val.teamBuild!=="Finish building team") {
         if (val.teamBuild === "Add engineer") {
             let engineer = await addEngineer();
+            engineer = new Engineer(engineer.name, engineer.employeeID, engineer.email, engineer.github);
             team.push(engineer);
         } else if (val.teamBuild === "Add intern") {
             let intern = await addIntern();
+            intern = new Intern(intern.name, intern.employeeID, intern.email, intern.school);
             team.push(intern);
         }
         val = await addToTeam();
@@ -137,6 +139,5 @@ async function addIntern() {
     },
 ])
 }
-
 
 init();
