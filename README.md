@@ -10,7 +10,14 @@
 
 ## URL <a id="url"></a>
 
+The repository for this project can be found at
+https://github.com/Spacepineapple/team-profile-generator. Please note that as
+this programme uses Node.js, it has not been deployed and there is no URL for
+the 'live' programme.
+
 ## Description <a id="description"></a>
+
+
 
 ## Installation <a id="installation"></a>
 
