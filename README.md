@@ -17,7 +17,43 @@ the 'live' programme.
 
 ## Description <a id="description"></a>
 
+This project is my solution to the ninth challenge task of a web development
+bootcamp. For this task, I was provided with starter code containing tests,
+empty class files and an index.js file with code to import the classes and
+relevant packages. I was tasked with creating a command-line application that
+generated a profile of a company team. This application need to accept user
+input and generate an HTML file based on this input, although the functionality
+to generate the page was provided for me. 
 
+As a command-line application, this programme requires the use of the command
+line or terminal. Instructions for installing any necessary software and opening
+the application can be found below. After successfully opening the application,
+the user should see be prompted with a question as can be seen in the image
+below:
+
+![Screenshot of first question](./images/first_question.png)
+
+After answering each question for the initial employee (i.e., the manager), the
+user will then be prompted to add additional employees to the team by selecting
+from a menu. Options include adding an engineer, adding an intern or finishing
+building the team as can be seen in the image below:
+
+![Screenshot of add to team option](./images/add_to_team.png)
+
+A user may add as many additional team members as they like by selecting the
+relevant option and answering the prompts. After the user has finished, they can
+then select "Finish building team" to generate an HTML page showing their team
+profile. This page will be generated in the output folder within the repository
+alongside a style.css page. Note that if no such folder exists, one will be
+created when the "Finish building team" option is selected. Upon successful
+completion of the page generation, a console message will appear in the command
+line confirming that the HTML and CSS files have been generated. Should the
+process fail, the resulting error will be logged to the command line instead.
+
+An example team profile can be found in the "output" folder of this repository
+and a screenshot of this page is also shown in the image below:
+
+![Screenshot of generated page](./images/generated_page.png)
 
 ## Installation <a id="installation"></a>
 
@@ -28,7 +64,6 @@ that subsequent versions of inquirer require the ES6 import/export syntax. Due
 to the use of Jest for this project and the difficulties associated with the ES6
 syntax in Jest, this project does not use this syntax and subsequent versions of
 inquirer will not function as expected.
-
 
 ## Usage <a id="usage"></a>
 
