@@ -1,15 +1,19 @@
 import Manager from "./lib/Manager.mjs";
 import Engineer from "./lib/Engineer.mjs";
 import Intern from "./lib/Intern.mjs";
-import fs from "fs";
+import fs, { write } from "fs";
 import inquirer from "inquirer";
 import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-//const OUTPUT_DIR = path.resolve(__dirname, "output");
-//const outputPath = path.join(OUTPUT_DIR, "team.html");
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-//const render = require("./src/page-template.js");
+import renderTeam from "./src/page-template.mjs";
+import renderCSS from "./src/page-styling.mjs";
 
 const questions = [
     "What is the employee's name?",
@@ -68,8 +72,9 @@ async function init() {
             team.push(intern);
         }
         val = await addToTeam();
-    }        
-    console.log(team);
+    }       
+    let html = renderTeam(team);
+    writeToFile(html); 
 }
 
 async function addToTeam() {
@@ -140,4 +145,27 @@ async function addIntern() {
 ])
 }
 
-init();
+function writeToFile(data) {
+    //Create a README markdown file in the "generated_readme" folder
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+    createCSS();
+    let fileName = outputPath;
+    //Write the HTML content to file
+    fs.writeFile(fileName, data, (err) => {
+        //If there is an error, log it to the console. Otherwise log "Page generated!"
+        err ? console.error(err) : console.log("Page generated!");
+    }); 
+}
+
+function createCSS() {
+    let fileName = path.join(OUTPUT_DIR, "style.css");
+    let data = renderCSS();
+    fs.writeFile(fileName, data, (err) => {
+        err ? console.error(err) : console.log("CSS generated!");
+    })
+}
+
+//init();
+createCSS();
